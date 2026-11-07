@@ -1027,8 +1027,8 @@ class ConsensusDebateResult(BaseDebateResult):
         return len(self.sides) - self.scoresheet.rank(side)
 
     def teamscore_field_win(self, side):
-        if (self.debate.round.stage == Round.Stage.ELIMINATION
-                and hasattr(self.scoresheet, 'ranked_sides')):
+        if (self.debate.round.stage == Round.Stage.ELIMINATION and
+                hasattr(self.scoresheet, 'ranked_sides')):
             return self.debateteams[side] in self.advancing_dt()
         return side in self.scoresheet.winners()
 
