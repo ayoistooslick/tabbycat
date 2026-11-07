@@ -101,7 +101,8 @@
           {% include "components/item-action.html" with icon="shuffle" %}
         {% endif %}
 
-        {% if pref.public_draw == 'current' and not pref.team_tab_released %}
+        {% if pref.public_draw == 'current' %}
+          {% if not pref.team_tab_released or tournament.current_rounds %}
           {% tournamenturl 'draw-public-current-rounds' as url %}
           {% if tournament.public_draws_available %}
             {% if tournament.current_rounds|length == 1 %}
@@ -121,6 +122,7 @@
               {% trans "The draw for the next round has yet to be released" as draw_for_round_text %}
             {% endif %}
             {% include "components/item-info.html" with icon="eye-off" text=draw_for_round_text type="muted" nopad=True %}
+          {% endif %}
           {% endif %}
         {% endif %}
 
